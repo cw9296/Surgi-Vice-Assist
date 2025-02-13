@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "surgivice",
+    "slug": "surgivice",
+    "version": "1.0.0",
+    "ios": {
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "SurgiVice uses Face ID for authentication."
+      }
+    },
+    "plugins": [
+      "expo-local-authentication"
+    ],
+    "android": {
+      "permissions": [
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "package": "com.anonymous.surgivice"
+    }
+  }
+}
