@@ -1,4 +1,4 @@
-package com.surgivice
+package com.anonymous.surgivice
 
 import android.app.Application
 import android.content.res.Configuration
