@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: surgivice-backend
+    ports:
+      - "4000:4000"   # Backend API
+      - "3307:3306"   # MySQL
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=surgivice_dev
+      - PORT=4000
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+      - db-data:/var/lib/mysql  # Persist database files
+    command: >
+      sh -c "
+      service mariadb start &&
+      echo 'Waiting for MariaDB to initialize...' &&
+      sleep 5 &&
+      mysql -u root -p$$MYSQL_ROOT_PASSWORD -e 'CREATE DATABASE IF NOT EXISTS surgivice;' &&
+      mysql -u root -p$$MYSQL_ROOT_PASSWORD -e 'USE surgivice; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50) NOT NULL, email VARCHAR(100), password VARCHAR(100) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);' &&
+      tail -f /dev/null"
+    restart: unless-stopped
+
+volumes:
+  db-data:
