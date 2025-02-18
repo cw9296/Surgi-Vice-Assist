@@ -24,7 +24,7 @@ COPY . .
 EXPOSE 4000 3306
 
 # Start MariaDB and Node.js together
-CMD  && node backend.js
+CMD ["node", "backend.js"]
 
 
 
