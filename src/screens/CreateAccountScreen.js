@@ -1,15 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { createAccount } from '../httpClient';
+import { testGet } from '../httpClient';
 export default function CreateAccountScreen({ navigation })
 {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
 
     return (
         <View style={styles.container}>
               <Image source={require('../../assets/logo.jpg')} style={styles.image} />
+
+              <TextInput 
+                style={styles.input}
+                placeholder="Name"
+                placeholderTextColor="gray" 
+                value={name}
+                onChangeText={setName}
+                autoCapitalize="none"
+              />
 
               <TextInput 
                 style={styles.input}
@@ -45,7 +57,15 @@ export default function CreateAccountScreen({ navigation })
               <Button
                 title="Create Account"
                 color="blue"
-                // onPress={() => navigation.navigate('LoginScreen')}
+                onPress={() => {
+                  if(!username || !email || !password || !name){
+                    Alert.alert("Please fill out all fields!")
+                  }
+                  else{
+                      createAccount(name, username, email, password);
+                      // testGet();
+                  }
+                }}
                 
               />
 
