@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 //create account function 
 export const createAccount = async (Name, username, email, password) => {
     try{
-        const response = await fetch('http://192.168.1.46:4000/users/createAccount', {
+        const response = await fetch('http://10.47.166.154:4000/users/createAccount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
