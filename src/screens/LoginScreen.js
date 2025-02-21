@@ -30,7 +30,7 @@ export default function LoginScreen({ navigation })
               <Button
                 title="Login"
                 color="blue"
-                // onPress={() => navigation.navigate('LoginScreen')}
+                onPress={() => navigation.navigate('AvatarScreen')}
                 
               />
 

@@ -8,6 +8,8 @@ import { theme } from './src/core/theme'
 import StartScreen from './src/screens/StartScreen'
 import LoginScreen from './src/screens/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen';
+import AvatarScreen from './src/screens/AvatarScreen'
+import MenuProvider from 'react-native-popup-menu';
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -23,6 +25,7 @@ export default function App() {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
+          <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
