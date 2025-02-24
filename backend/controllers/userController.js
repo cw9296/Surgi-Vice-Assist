@@ -33,12 +33,12 @@ const createAccount = async (req, res) => {
 
         
 
-        // if(result.affectedRows > 0){
-        //     res.status(200).json({ message: "Account Successfully Created!" });
-        // }
-        // else{
-        //     res.status(500).json({ message: "Error while inserting into database" });
-        // }
+        if(result.affectedRows > 0){
+            res.status(200).json({ message: "Account Successfully Created!" });
+        }
+        else{
+            res.status(500).json({ message: "Error while inserting into database" });
+        }
 
 
     }

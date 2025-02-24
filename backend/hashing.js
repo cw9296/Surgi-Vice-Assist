@@ -19,7 +19,7 @@ async function hashPassword(password) {
 async function compareHash(userPassword, databasePassword) {
     try{
         //compare user password with that retrieved from database
-        const result = bcrypt.compare(userPassword, databasePassword);
+        const result = await bcrypt.compare(userPassword, databasePassword);
 
         if(result){
             return true;

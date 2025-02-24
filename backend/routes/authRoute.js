@@ -7,6 +7,6 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 //Defining routes to functions
-router.put('/', authController.authUser); //Handles authentication of a user.
+router.post('/', authController.authUser); //Handles authentication of a user.
 
 module.exports = router;

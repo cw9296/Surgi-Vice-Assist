@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 //create account function 
 export const createAccount = async (Name, username, email, password) => {
     try{
-        const response = await fetch('http://10.47.166.154:4000/users/createAccount', {
+        const response = await fetch('http://10.47.169.159:4000/users/createAccount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,6 +36,36 @@ export const testGet = async () => {
             
 
         });
+
+        
+
+    }
+    catch (error) {
+        console.error("Error occurred when communicating with API:", error.message); // Logs the error message
+        console.error("Stack trace:", error.stack); // Logs the stack trace for debugging
+    }
+};
+
+//Auth packager
+export const auth = async (username, password) => {
+    try{
+        const response = await fetch('http://10.47.169.159:4000/auth/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }, 
+            body: JSON.stringify({username, password}),
+        });
+
+        console.log(response)
+        if (response.ok) {
+            const data = await response.json();
+            return true;
+          } else {
+            return false;
+          }
+        
+
 
         
 

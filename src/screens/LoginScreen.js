@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { auth } from '../httpClient';
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import { CommonActions } from '@react-navigation/native';
 export default function LoginScreen({ navigation })
 {
     const [Username, setUsername] = useState('');
@@ -30,16 +32,29 @@ export default function LoginScreen({ navigation })
               <Button
                 title="Login"
                 color="blue"
-                // onPress={() => navigation.navigate('LoginScreen')}
+                onPress={() => {
+                  if(!Username || !Password){
+                                        Alert.alert("Please fill out all fields!")
+                                      }
+                                      else{
+                                          authenticated = auth(Username, Password);
+                                          if (authenticated)
+                                          {
+                                            Alert.alert('Success! Welcome', Username); // Display data in alert
+                                              navigation.dispatch(
+                                                CommonActions.reset({
+                                                    index: 0,
+                                                    routes: [{ name: 'LandingPage' }], // Set LandingPage as the only route
+                                                })
+                                            );
+                                          }
+                                          else{
+                                            Alert.alert('Error', 'Username or Password incorrect');
+                                          }
+                                      }
+                                    }}
                 
               />
-
-               <Button
-                    title="<- Back"
-                    color="blue"
-                    onPress={() => navigation.navigate('StartScreen')}
-                
-                />
 <StatusBar style="auto" />
         </View>
     )
