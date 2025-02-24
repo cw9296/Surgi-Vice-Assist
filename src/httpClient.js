@@ -57,13 +57,21 @@ export const auth = async (username, password) => {
             body: JSON.stringify({username, password}),
         });
 
-        console.log(response)
-        if (response.ok) {
-            const data = await response.json();
-            return true;
-          } else {
+        if (response.status === 401) {
+            console.warn("Authentication Failed: 401 Unauthorized");
+            return false;  
+        }
+
+        
+        if (!response.ok) {
+            console.warn(`Authentication Failed: ${response.status}`);
             return false;
-          }
+        }
+
+        
+        const data = await response.json();
+        console.log(" Authentication Successful:", data);
+        return true;
         
 
 

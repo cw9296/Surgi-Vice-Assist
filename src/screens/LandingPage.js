@@ -69,13 +69,6 @@ export default function CreateAccountScreen({ navigation })
                 
               />
 
-              <Button
-                title="<- Back"
-                color="blue"
-                onPress={() => navigation.navigate('StartScreen')}
-                
-              />
-
               
               <StatusBar style="auto" />
         </View>

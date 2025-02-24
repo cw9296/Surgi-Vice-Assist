@@ -32,27 +32,34 @@ export default function LoginScreen({ navigation })
               <Button
                 title="Login"
                 color="blue"
-                onPress={() => {
+                onPress={async () => {
                   if(!Username || !Password){
-                                        Alert.alert("Please fill out all fields!")
-                                      }
-                                      else{
-                                          authenticated = auth(Username, Password);
-                                          if (authenticated)
-                                          {
-                                            Alert.alert('Success! Welcome', Username); // Display data in alert
-                                              navigation.dispatch(
-                                                CommonActions.reset({
-                                                    index: 0,
-                                                    routes: [{ name: 'LandingPage' }], // Set LandingPage as the only route
-                                                })
-                                            );
-                                          }
-                                          else{
-                                            Alert.alert('Error', 'Username or Password incorrect');
-                                          }
-                                      }
+                    Alert.alert("Please fill out all fields!")
+                  }
+                  else{
+                      authenticated = await auth(Username, Password);
+                      if (authenticated)
+                      {
+                        Alert.alert('Success! Welcome', Username); // Display data in alert
+                          navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0,
+                                routes: [{ name: 'LandingPage' }], // Set LandingPage as the only route
+                            })
+                        );
+                      }
+                      else{
+                        Alert.alert('Error', 'Username or Password incorrect');
+                      }
+                  }
                                     }}
+                
+              />
+
+              <Button
+                title="<- Back"
+                color="blue"
+                onPress={() => navigation.navigate('StartScreen')}
                 
               />
 <StatusBar style="auto" />
