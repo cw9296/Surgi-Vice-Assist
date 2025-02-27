@@ -9,7 +9,8 @@
       }
     },
     "plugins": [
-      "expo-local-authentication"
+      "expo-local-authentication",
+      "expo-barcode-scanner"
     ],
     "android": {
       "permissions": [
