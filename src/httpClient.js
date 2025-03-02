@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 //create account function 
 export const createAccount = async (Name, username, email, password) => {
     try{
-        const response = await fetch('http://10.47.169.159:4000/users/createAccount', {
+        const response = await fetch('http://10.47.209.31:4000/users/createAccount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const createAccount = async (Name, username, email, password) => {
 
 export const testGet = async () => {
     try{
-        const response = await fetch('http://192.168.1.46:4000/users', {
+        const response = await fetch('http://10.47.209.31:4000/users', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const testGet = async () => {
 //Auth packager
 export const auth = async (username, password) => {
     try{
-        const response = await fetch('http://10.47.169.159:4000/auth/', {
+        const response = await fetch('http://10.103.5.59:4000/auth/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
