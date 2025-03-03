@@ -1,75 +1,89 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
-//import { BarCodeScanner } from "expo-barcode-scanner";  // Correct import for barcode scanning
-import { Camera, CameraView } from "expo-camera";  // Correct import for accessing camera
+import { Text, Dimensions, Alert, Vibration, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Camera, CameraView } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
-import { white } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
+import * as Linking from "expo-linking";
 
 export default function CameraScreen() {
-    const [hasPermission, setHasPermission] = useState(null);
+    const [hasCameraPermission, setCameraPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [scannedData, setScannedData] = useState("");
-    const navigation = useNavigation(); //initialize navigation
+    const navigation = useNavigation(); // Navigation hook
 
     useEffect(() => {
-        const getCameraPermissions = async () => {
+        const requestPermissions = async () => {
             const { status } = await Camera.requestCameraPermissionsAsync();
-            setHasPermission(status === "granted");
+            setCameraPermission(status === "granted");
         };
 
-        getCameraPermissions();
+        requestPermissions();
     }, []);
 
-    const handleBarCodeScanned = ({ type, data }) => {
+    useEffect(() => {
+        if (hasCameraPermission === false) {
+            Alert.alert(
+                "Camera Permission Required",
+                "Please enable camera access in settings to scan QR codes.",
+                [
+                    { text: "Go to settings", onPress: () => Linking.openSettings() },
+                    { text: "Cancel", style: "cancel" },
+                ]
+            );
+        }
+    }, [hasCameraPermission]);
+
+    const handleBarCodeScanned = ({ data }) => {
         setScanned(true);
-        setScannedData(data);
-        alert(`QR Code Scanned! Data: ${data}`);
+        Vibration.vibrate();
+        Alert.alert("QR Code Scanned!", `Data: ${data}`);
+        navigation.goBack();
     };
 
     const handleCloseCamera = () => {
-        navigation.goBack(); //close camera and go back to QRCodeScreen
-    }
+        navigation.goBack(); //close scanner and go back
+    };
 
-    if (hasPermission === null) {
-        return <Text>Requesting for camera permission...</Text>;
+    if (hasCameraPermission === null) {
+        return <Text>Requesting camera permission...</Text>;
     }
-    if (hasPermission === false) {
+    if (hasCameraPermission === false) {
         return <Text>No access to camera</Text>;
     }
 
     return (
         <View style={styles.container}>
             <CameraView
-                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}  // Only scan once
+                onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} //only scan once
+                barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
                 style={StyleSheet.absoluteFillObject}
             />
             <View style={styles.buttonContainer}>
-                <Button title="Close" onPress={handleCloseCamera} style={styles.closeButton} />
+                <TouchableOpacity style={styles.closeButton} onPress={handleCloseCamera}>
+                    <Text style={styles.closeButtonText}>Close</Text>
+                </TouchableOpacity>
             </View>
-            {scanned && (
-                <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-            )}
-            {scannedData ? <Text style={styles.scannedText}>{scannedData}</Text> : null}
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        position: "relative",
+        position: "relative"
     },
     buttonContainer: {
         position: "absolute",
-        top: 30,
+        top: 35,
         right: 20,
         zIndex: 1,
     },
     closeButton: {
-
+        backgroundColor: "red",
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
     },
-    scannedText: {
-        marginTop: 20,
+    closeButtonText: {
+        color: "white",
         fontSize: 16,
         fontWeight: "bold",
     },
