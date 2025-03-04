@@ -13,3 +13,14 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL UNIQUE,  -- Increased size to accommodate modern password hashes
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS educational_materials (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    category ENUM('pre-surgery', 'day-of', 'post-surgery', 'complications', 'telemedicine') NOT NULL,
+    file_path VARCHAR(500) NOT NULL,
+    description TEXT, 
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+

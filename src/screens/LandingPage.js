@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, ScrollView } from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 export default function MyScreen({ navigation }) {
@@ -9,44 +9,50 @@ export default function MyScreen({ navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>
-          Thank You For Using Surgi-Vice!
-        </Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
+            Thank You For Using Surgi-Vice!
+          </Text>
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => navigation.navigate('EducationalMaterials')}
+          >
+            <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-
-      
-      <View style={styles.buttonContainer}>
-        {/* <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
-        </TouchableOpacity> */}
-
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
-        </TouchableOpacity>
-
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    backgroundColor: '#f5f5f5',
+    paddingTop: 20,  // Adds space at the top
+  },
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+    alignItems: 'center',
   },
   textContainer: {
-    flex: 1, // Reduced to move buttons closer
-    justifyContent: 'flex-end', // Pushes text down
+    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingBottom: 20, // Adds space below text
+    paddingBottom: 20,
+    paddingTop: 250,
   },
   text: {
     fontSize: 40,
@@ -55,9 +61,9 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   buttonContainer: {
-    flex: 1.5, // Reduced to bring buttons up
-    justifyContent: 'flex-start', // Aligns buttons closer to text
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingBottom: 20,
   },
   button: {
     backgroundColor: 'lightblue', // Grey color
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
-    fontSize: 22, // Increased text size
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
   },
