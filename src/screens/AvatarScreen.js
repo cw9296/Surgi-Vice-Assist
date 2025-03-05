@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import {React, useState} from 'react';
 import { Image, StyleSheet, View, Button, Text, ImageBackground, Pressable, Modal} from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
+// const AntDesign = require('@expo/vector-icons/AntDesign');
+
 // CURRENTLY ACCESSIBLE BY CLICKING "LOGIN" FROM LOGIN SCREEN ONLY
 
-export default function StartScreen({ navigation }) {
+export default function AvatarScreen({ navigation }) {
   // defines the options for each menu for each part of the body
   // will associate a route with each of these options when educational materials page is ready
   const head_options = [
