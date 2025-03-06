@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     marginVertical: 20,
     elevation: 5,
-    width: '80%',
+    width: 300,
   },
   buttonText: {
     color: 'black',

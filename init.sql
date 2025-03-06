@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS educational_materials (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    surgery_name VARCHAR(100),
     title VARCHAR(255) NOT NULL,
     category ENUM('pre-surgery', 'day-of', 'post-surgery', 'complications', 'telemedicine') NOT NULL,
     file_path VARCHAR(500) NOT NULL,
