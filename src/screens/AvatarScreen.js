@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import { Image, StyleSheet, View, Button, Text, ImageBackground, Pressable, Modal} from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import SvgAvatar from '../../assets/avatar_svg_handler';
 
 // const AntDesign = require('@expo/vector-icons/AntDesign');
 
@@ -30,12 +31,13 @@ export default function AvatarScreen({ navigation }) {
         <View style={styles.container}>
             <Text style={styles.brandText}>Click on the area where your procedure was performed.</Text>
 
-              <ImageBackground source={require('../../assets/human_outline.jpg')} style={styles.image}>
+              {SvgAvatar()}
+              {/* <ImageBackground source={require('../../assets/human_outline.jpg')} style={styles.image}>
                 <IconButton options={head_options} locationstyle={styles.head_icon}/>
                 <IconButton options={chest_options} locationstyle={styles.chest_icon}/>
                 <IconButton options={arms_options} locationstyle={styles.arm_icon_l}/>
                 <IconButton options={arms_options} locationstyle={styles.arm_icon_r}/>
-              </ImageBackground>
+              </ImageBackground> */}
 
             <Button
                 title="<- Back"
@@ -86,7 +88,7 @@ const IconButton = ({ options, locationstyle }) => {
           </View>
         </View>
       </Modal>
-      <Pressable onPress={() => setModalVisible(!modalVisible)}>{icon}</Pressable>
+      {/* <Pressable onPress={() => setModalVisible(!modalVisible)}>{icon}</Pressable> */}
       </View>
   );
 };
