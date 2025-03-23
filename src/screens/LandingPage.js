@@ -23,7 +23,7 @@ export default function MyScreen({ navigation }) {
           <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
         </TouchableOpacity> */}
 
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('AvatarScreen')}}>
           <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
         </TouchableOpacity>
 
