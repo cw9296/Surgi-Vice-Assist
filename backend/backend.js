@@ -4,7 +4,7 @@ const session = require('express-session');
 const userRoutes = require('./routes/usersRoute');
 const authRoutes = require('./routes/authRoute');
 const materialsRoutes = require('./routes/materialsRoute');
-// const profileRoutes = require('./routes/profileRoute');
+const profileRoutes = require('./routes/profileRoute');
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(session({
 //Attaching routes
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
-// app.use('/profile', profileRoutes);
+app.use('/profile', profileRoutes);
 app.use('/materials', materialsRoutes);
 
 //Using port 4000

@@ -6,7 +6,7 @@ const profileController = require('../controllers/profileController');
 const router = express.Router();
 
 //generic route
-router.post('/profile/retrieve', profileController.PickUpWhereLeftOff);
+router.post('/retrieve', profileController.PickUpWhereLeftOff);
 
 
 module.exports = router;

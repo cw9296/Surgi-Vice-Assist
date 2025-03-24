@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View, ScrollView } from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { getProfileInfo } from '../httpClient';
 
 export default function MyScreen({ navigation }) {
   useEffect(() => {
@@ -26,9 +27,24 @@ export default function MyScreen({ navigation }) {
             <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={async () => {
+              try {
+                // Calling packager to retrieve PDF
+                const pdf = await getProfileInfo();  
+
+                // Send Base64 encoded PDF to PdfViewer Page
+                navigation.navigate('PdfViewer', { pdfBase64: pdf });
+              } catch (error) {
+                console.error("Error loading PDF:", error);
+                Alert.alert("Failed to load PDF");
+              }
+            }}
+          >
             <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
           </TouchableOpacity>
+
         </View>
 
       </View>
