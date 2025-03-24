@@ -26,6 +26,7 @@ const authUser = async (req, res) => {
                 const isMatch = await compareHash(password, hashedPassword);
     
                 if(isMatch){
+                    req.session.username = username;
                     return res.status(200).json({ message: "Authenticated" });
                 }
                 else{

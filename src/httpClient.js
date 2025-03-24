@@ -51,6 +51,7 @@ export const auth = async (username, password) => {
     try{
         const response = await fetch('http://10.47.0.172:4000/auth/', {
             method: 'POST',
+            credentials: 'include', 
             headers: {
                 'Content-Type': 'application/json',
             }, 
@@ -87,7 +88,7 @@ export const auth = async (username, password) => {
 //Educational Materials packager
 export const educationalMaterials = async () => {
 
-    const pdfName = 'Taking Care of Your Flushable Drain Tubes';
+    const pdfName = 'Gravity Drain';
     const infoRequested = 'post-surgery';
     try{
         const response = await fetch('http://10.47.0.172:4000/materials/educational', {
