@@ -2,21 +2,42 @@ const { getConnection } = require('./database');
 const path = require('path');
 const fs = require('fs');
 
-// Will insert data into the users table
+//grabbing the path for the PDF file 
 const getEducationalMaterials = async (req, res) => {
     try {
         const connection = await getConnection();
 
-        const { pdfName, infoRequested } = req.body;
+        const { pdfName, infoRequested, username} = req.body;
 
-        const query = 'SELECT file_path FROM educational_materials WHERE title = ? AND category = ?;';
+        //Grabbing the PDF for the user and also gathering their credentials to input into profile table. 
+        const query1 = `
+            SELECT file_path, id AS materials_id FROM educational_materials WHERE title = ? AND category = ?;
+            SELECT id AS user_id FROM users WHERE username = ?;
+            `;
 
         // Execute the query and check the result
-        const [result] = await connection.execute(query, [pdfName, infoRequested]);
+        const [result] = await connection.execute(query1, [pdfName, infoRequested, username]);
 
         console.log(result);
 
-        if (result) {  // Corrected this part to match your original intent
+        //educational materials ID
+        const eduId = result.materials_id;
+        const userId = result.user_id;
+
+        //Inserting into profile table
+        const query2 = 'INSERT INTO user_material_views (user_id, material_id) VALUES(?,?);'
+
+        const profileResult = await connection.execute(query2, [userId, eduId]);
+
+        if (profileResult.affectedRows > 0){
+            console.log("Succesfully saved users state")
+        }
+        else{
+            console.log("Something Happened! Check database!")
+        }
+
+
+        if (result) { 
             const filePath = path.join('/backend', result.file_path);
             
             // Read PDF as Base64
