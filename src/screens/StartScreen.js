@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Image, StyleSheet, View, Button, Text} from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 export default function StartScreen({ navigation }) {
   return (
@@ -10,19 +10,22 @@ export default function StartScreen({ navigation }) {
       <Text style={styles.welcomeText}>Thank you for choosing</Text>
       <Text style={styles.brandText}>Surgi-Vice!</Text>
 
-      <Button
-        style={styles.brandText}
-        title="Login"
-        onPress={() => navigation.navigate('LoginScreen')}
-        accessibilityLabel="Navigate to Login Screen"
-      />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => navigation.navigate('LoginScreen')}
+        >
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
 
-      <Button
-        style={styles.brandText}
-        title="Create Account"
-        onPress={() => navigation.navigate('CreateAccountScreen')}
-        accessibilityLabel="Navigate to Login Screen"
-      />
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={() => navigation.navigate('CreateAccountScreen')}
+        >
+          <Text style={styles.buttonText}>Create Account</Text>
+        </TouchableOpacity>
+      </View>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -55,5 +58,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#007AFF', // Apple blue color
     marginBottom: 20,
+  },
+
+  buttonContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingBottom: 20,
+  },
+
+  button: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 25,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    marginVertical: 20,
+    elevation: 5,
+    width: 300, 
+    alignItems: 'center', // Center text horizontally
+  },
+
+  buttonText: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
