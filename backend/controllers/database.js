@@ -2,7 +2,7 @@ const mariadb = require('mariadb');
 
 //Creating the connection pool
 const pool = mariadb.createPool({
-    host: '172.18.0.2',
+    host: '10.47.98.43',
     user: 'root',
     password: 'root',
     database: 'surgivice_dev',
