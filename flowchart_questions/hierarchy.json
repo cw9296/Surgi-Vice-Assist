@@ -1,0 +1,163 @@
+{
+    "root":
+    {
+        "question_text": "Are you having issues or concerns with your device?",
+        "responses":
+        [
+            {   "text": "yes",
+                "question": "maintenance_or_symptoms",
+                "endpoint": false
+            },
+            {
+                "text": "no",
+                "question": "access_material",
+                "endpoint": false
+            },
+            {
+                "text": "maybe",
+                "question": "maintenance_or_symptoms",
+                "endpoint": false
+            }
+        ]
+    },
+    "maintenance_or_symptoms":
+    {
+        "question_text": "Are you concerned about deivce maintenance or symptoms?",
+        "responses":
+        [
+            {
+                "text": "maintenance",
+                "question": "For maintenance, please read this information or watch this video.",
+                "endpoint": true
+            },
+            {
+                "text": "symptoms",
+                "question": "fever",
+                "endpoint": false
+            }
+        ]
+    },
+    "fever":
+    {
+        "question_text": "Do you have a fever you believe is associated with your device?",
+        "responses":
+        [
+            {
+                "text": "yes",
+                "question": "speak_to_team_ER",
+                "endpoint": false
+            },
+            {
+                "text": "No -- Discharge or fluid at site",
+                "question": "discharge_or_fluid",
+                "endpoint": false
+            },
+            {
+                "text": "No -- Intolerable pain at site",
+                "question": "intolerable_pain",
+                "endpoint": false
+            },
+            {
+                "text": "No -- Something Else",
+                "question": "something_else",
+                "endpoint": false
+            }
+        ]
+    },
+    "discharge_or_fluid":
+    {
+        "question_text": "Is there discharge or fluid at wound site?",
+        "responses":
+        [
+            {
+                "text": "yes",
+                "question": "draining",
+                "endpoint": false
+            },
+            {
+                "text": "no",
+                "question": "intolerable_pain",
+                "endpoint": false
+            }
+        ]
+    },
+    "draining":
+    {
+        "question_text": "How long has the wound been draining?",
+        "responses":[
+            {
+                "text": "Greater than 12 hours",
+                "question": "speak_to_team_optimal_recovery",
+                "endpoint": false
+            },
+            {
+                "text": "Less than 12 hours",
+                "question": "speak_to_team_watch_12hr",
+                "endpoint": false
+            }
+        ]
+    },
+    "speak_to_team_optimal_recovery":
+    {
+        "question_text": "For optimal recovery, we recommend speaking to someone on your care team. How does that sound?",
+        "responses":[
+            {
+                "text": "Sure!",
+                "question": "",
+                "endpoint": true
+            },
+            {
+                "text": "No thanks.",
+                "question": "",
+                "endpoint": true
+            }
+        ]
+    },
+    "speak_to_team_watch_12hr":
+    {
+        "question_text": "We typically watch this symptom for 12 hours and if it persists, bring you in for a clinic visit. Would you like to wait or speak to someone from your care team now?",
+        "responses":[
+            {
+                "text": "Wait",
+                "question": "",
+                "endpoint": true
+            },
+            {
+                "text": "Speak now",
+                "question": "",
+                "endpoint": true
+            }
+        ]
+    },
+    "intolerable_pain":{
+        "question_text": "Is there intolerable pain at wound site?",
+        "responses":[
+            {
+                "text": "Greater than 12 hours",
+                "question": "speak_to_team_optimal_recovery",
+                "endpoint": false
+            },
+            {
+                "text": "Less than 12 hours",
+                "question": "speak_to_team_watch_12hr",
+                "endpoint": false
+            }
+        ]
+    },
+    "something_else":
+    {
+        "question_text": "I’m having trouble pinpointing your concern. Would you like to speak to someone from your care team?",
+        "responses":[
+            {
+                "text": "Sure!",
+                "question": "",
+                "endpoint": true
+            },
+            {
+                "text": "No thanks.",
+                "question": "",
+                "endpoint": true
+            }
+        ]
+    }
+}
