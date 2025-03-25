@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pm2.log*
+
+# Docker files
+docker-compose.override.yml
+Dockerfile.dev
+
+# Database files (prevent large datasets in images)
+backend/data/mysql/
+
+# Build artifacts
+dist/
+build/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db

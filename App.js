@@ -8,6 +8,10 @@ import { theme } from './src/core/theme'
 import StartScreen from './src/screens/StartScreen'
 import LoginScreen from './src/screens/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen';
+import LandingPage from './src/screens/LandingPage';
+import EducationalMaterials from './src/screens/EducationalMaterials';
+import PdfViewer from './src/screens/PdfViewer';
+
 import QRCodeScreen from './src/screens/QRCodeScreen';
 import CameraScreen from './src/screens/CameraScreen';
 const Stack = createStackNavigator()
@@ -27,6 +31,9 @@ export default function App() {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
+          <Stack.Screen name="LandingPage" component={LandingPage} />
+          <Stack.Screen name="EducationalMaterials" component={EducationalMaterials} />
+          <Stack.Screen name="PdfViewer" component={PdfViewer} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
