@@ -87,6 +87,42 @@ export const auth = async (username, password) => {
     }
 };
 
+//Educational Materials packager
+export const educationalMaterials = async () => {
+
+    const pdfName = 'Taking Care of Your Flushable Drain Tubes';
+    const infoRequested = 'post-surgery';
+    try{
+        const response = await fetch('http://10.47.1.112:4000/materials/educational', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }, 
+            body: JSON.stringify({pdfName, infoRequested}),
+        });
+        
+        // Parse the JSON response
+        const { pdfBase64 } = await response.json();
+        
+        
+        if (!response.ok) {
+            console.warn(`Something Failed: ${response.status}`);
+            return false;
+        }
+
+        //Return the base64 PDF
+        return pdfBase64;
+
+        
+        
+
+    }
+    catch (error) {
+        console.error("Error occurred when communicating with API:", error.message); // Logs the error message
+        console.error("Stack trace:", error.stack); // Logs the stack trace for debugging
+    }
+};
+
 
 
 
