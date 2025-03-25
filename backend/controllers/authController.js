@@ -5,8 +5,9 @@ const { compareHash } = require('../hashing');
 
 const authUser = async (req, res) => {
     let {username, password}  = req.body;
+    let connection;
     try{
-            const connection = await getConnection();
+             connection = await getConnection();
   
             //Pulling the password out of database
             const query = 'SELECT password FROM users WHERE username = ?';
@@ -27,9 +28,11 @@ const authUser = async (req, res) => {
     
                 if(isMatch){
                     return res.status(200).json({ message: "Authenticated" });
+                    
                 }
                 else{
                     return res.status(401).json({ message: "Incorrect Password" });
+                    
                 }
             }
 
@@ -41,6 +44,13 @@ const authUser = async (req, res) => {
     catch(error){
         console.error("Error occured while querying database", error);
         return res.status(500).json({ message: "Internal Server Error" }); 
+    }
+    finally{
+        //Close connection
+        if(connection){
+            connection.release();
+        }
+        
     }
 };
 
