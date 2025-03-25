@@ -3,11 +3,12 @@ const path = require('path');
 const fs = require('fs');
 
 const PickUpWhereLeftOff = async (req, res) => {
+    let connection;
     const username   = req.session.username;
     console.log("IN PICK UP");
     console.log(username);
     try {
-        const connection = await getConnection();
+         connection = await getConnection();
 
         const query = `
                     SELECT file_path 
@@ -54,6 +55,11 @@ const PickUpWhereLeftOff = async (req, res) => {
     } catch (error) {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
+    }
+    finally{
+        if(connection){
+            connection.release();
+        }
     }
 };
 
