@@ -20,7 +20,24 @@ export default function MyScreen({ navigation }) {
             <Text style={styles.buttonText}>PRE-SURGERY</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity style={styles.button} onPress={async () => {
+
+              try {
+                    const pdfName = 'Taking Care of Your Flushable Drain Tubes';
+                    const infoRequested = 'post-surgery';
+
+                    //Calling packager to retrieve PDF
+                    const pdf = await educationalMaterials(pdfName, infoRequested);  
+
+                    //send Base64 encoded pdf to PdfViewer Page
+                    navigation.navigate('PdfViewer', { pdfBase64: pdf });
+                    
+                } catch (error) {
+                    console.error("Error loading PDF:", error);
+                    Alert.alert("Failed to load PDF");
+                }
+          }}>
+
             <Text style={styles.buttonText}>DAY OF</Text>
           </TouchableOpacity>
 
@@ -28,8 +45,11 @@ export default function MyScreen({ navigation }) {
             style={styles.button} 
             onPress={async () => {
               try {
+
+                    const name = "Gravity Drain";
+                    const requested = "post-surgery";
                     //Calling packager to retrieve PDF
-                    const pdf = await educationalMaterials();  
+                    const pdf = await educationalMaterials(name, requested);  
 
                     //send Base64 encoded pdf to PdfViewer Page
                     navigation.navigate('PdfViewer', { pdfBase64: pdf });

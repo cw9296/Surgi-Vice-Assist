@@ -86,10 +86,10 @@ export const auth = async (username, password) => {
 };
 
 //Educational Materials packager
-export const educationalMaterials = async () => {
+export const educationalMaterials = async (pdfName, infoRequested) => {
 
-    const pdfName = 'Taking Care of Your Flushable Drain Tubes';
-     const infoRequested = 'post-surgery';
+    // const pdfName = 'Taking Care of Your Flushable Drain Tubes';
+    //  const infoRequested = 'post-surgery';
     try{
         const response = await fetch('http://10.47.229.204:4000/materials/educational', {
             method: 'POST',
