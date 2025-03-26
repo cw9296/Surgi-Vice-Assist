@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, ActivityIndicator, Alert } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, View, ActivityIndicator, Alert } from 'react-native';
 import { WebView } from 'react-native-webview';
 import * as FileSystem from 'expo-file-system';
 
-export default function PdfViewer({ route }) {
+export default function PdfViewer({ route, navigation }) {
   const { pdfBase64 } = route.params;  // Get the PDF URI passed from EducationalMaterials
   const [pdfUri, setpdfUri] = useState(null);
 
@@ -43,6 +43,9 @@ export default function PdfViewer({ route }) {
 
   return (
     <View style={styles.container}>
+    <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate("LandingPage")}>
+        <Text style={styles.backButtonText}>← Back</Text>
+      </TouchableOpacity>
       <WebView
         originWhitelist={['*']}
         source={{ uri: pdfUri }}  //Set the URI to be rendered in the webview
@@ -58,6 +61,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+
+  backButton: {
+    alignItems: 'center',
+    paddingVertical: 70,
+    paddingBottom: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#ddd',
+  },
+
   pdf: {
     flex: 1,
     width: '100%',

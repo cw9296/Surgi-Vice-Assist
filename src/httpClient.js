@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 //create account function 
 export const createAccount = async (Name, username, email, password) => {
     try{
-        const response = await fetch('http://10.0.0.43:4000/users/createAccount', {
+        const response = await fetch('http://10.47.229.204:4000/users/createAccount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const createAccount = async (Name, username, email, password) => {
 
 export const testGet = async () => {
     try{
-        const response = await fetch('http://10.47.209.31:4000/users', {
+        const response = await fetch('http://10.47.229.204:4000/users', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const testGet = async () => {
 //Auth packager
 export const auth = async (username, password) => {
     try{
-        const response = await fetch('http://10.0.0.43:4000/auth/', {
+        const response = await fetch('http://10.47.229.204:4000/auth/', {
             method: 'POST',
             credentials: 'include', 
             headers: {
@@ -91,7 +91,7 @@ export const educationalMaterials = async () => {
     const pdfName = 'Taking Care of Your Flushable Drain Tubes';
      const infoRequested = 'post-surgery';
     try{
-        const response = await fetch('http://10.0.0.43:4000/materials/educational', {
+        const response = await fetch('http://10.47.229.204:4000/materials/educational', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export const getProfileInfo = async () => {
     const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     const infoRequested = 'post-surgery';
     try{
-        const response = await fetch('http://10.0.0.43:4000/profile/retrieve', {
+        const response = await fetch('http://10.47.229.204:4000/profile/retrieve', {
             method: 'POST',
             credentials: true,
             headers: {
