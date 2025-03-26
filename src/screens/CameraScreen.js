@@ -3,6 +3,7 @@ import { Text, Dimensions, Alert, Vibration, View, StyleSheet, TouchableOpacity 
 import { Camera, CameraView } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
+import { educationalMaterials } from '../httpClient';
 
 export default function CameraScreen() {
     const [hasCameraPermission, setCameraPermission] = useState(null);
@@ -31,11 +32,14 @@ export default function CameraScreen() {
         }
     }, [hasCameraPermission]);
 
-    const handleBarCodeScanned = ({ data }) => {
+    const handleBarCodeScanned = async({ data }) => {
         setScanned(true);
         Vibration.vibrate();
         Alert.alert("QR Code Scanned!", `Data: ${data}`);
-        navigation.goBack();
+        const [title, category] = data.split(":");
+        console.log()
+        const pdf = await educationalMaterials(title, category);
+        navigation.navigate("PdfViewer", { pdfBase64: pdf });
     };
 
     const handleCloseCamera = () => {
