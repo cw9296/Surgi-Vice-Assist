@@ -3,7 +3,7 @@
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 //create account function 
 
-const ip_addr = '10.47.98.43'
+const ip_addr = '10.47.113.212'
 export const createAccount = async (Name, username, email, password) => {
     try{
         const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {
@@ -93,7 +93,7 @@ export const educationalMaterials = async () => {
     const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     const infoRequested = 'post-surgery';
     try{
-        const response = await fetch('http://10.47.1.112:4000/materials/educational', {
+        const response = await fetch('http://'+ip_addr+':4000/materials/educational', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

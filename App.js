@@ -21,18 +21,18 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="LandingPage"
           screenOptions={{
             headerShown: false,
           }}
         >
+          <Stack.Screen name="LandingPage" component={LandingPage} />
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
-          <Stack.Screen name="LandingPage" component={LandingPage} />
+          <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
           <Stack.Screen name="EducationalMaterials" component={EducationalMaterials} />
           <Stack.Screen name="PdfViewer" component={PdfViewer} />
-          <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

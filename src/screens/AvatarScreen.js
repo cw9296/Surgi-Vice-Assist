@@ -42,7 +42,7 @@ export default function AvatarScreen({ navigation }) {
             <Button
                 title="<- Back"
                 color='#007AFF'
-                onPress={() => navigation.navigate('StartScreen')}
+                onPress={() => navigation.navigate('LandingPage')}
             />
 
         </View>

@@ -21,7 +21,7 @@ export default function MyScreen({ navigation }) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={styles.button} 
-            onPress={() => navigation.navigate('EducationalMaterials')}
+            onPress={() => navigation.navigate('AvatarScreen')}
           >
             <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
           </TouchableOpacity>

@@ -31,8 +31,14 @@ export default function MyScreen({ navigation }) {
                     //Calling packager to retrieve PDF
                     const pdf = await educationalMaterials();  
 
-                    //send Base64 encoded pdf to PdfViewer Page
-                    navigation.navigate('PdfViewer', { pdfBase64: pdf });
+                    if(pdf){
+                      //send Base64 encoded pdf to PdfViewer Page
+                      navigation.navigate('PdfViewer', { pdfBase64: pdf });
+                    }
+                    else{
+                      throw new Error('Issue retrieving PDF');
+                    }
+
                     
                 } catch (error) {
                     console.error("Error loading PDF:", error);

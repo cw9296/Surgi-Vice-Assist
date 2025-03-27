@@ -1,6 +1,7 @@
 const { getConnection } = require('./database');
 const path = require('path');
 const fs = require('fs');
+//var connection = null;
 
 // Will insert data into the users table
 const getEducationalMaterials = async (req, res) => {
@@ -13,8 +14,6 @@ const getEducationalMaterials = async (req, res) => {
 
         // Execute the query and check the result
         const [result] = await connection.execute(query, [pdfName, infoRequested]);
-
-        console.log(result);
 
         if (result) {  // Corrected this part to match your original intent
             const filePath = path.join('/backend', result.file_path);
@@ -32,13 +31,18 @@ const getEducationalMaterials = async (req, res) => {
                 });
             });
         } else {
-            console.log('in else');
+            console.log('Error while querying database: result not valid');
             res.status(500).json({ message: "Error while querying database" });
         }
     } catch (error) {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
     }
+    // finally{
+    //     if(connection){
+    //         connection.release();
+    //     }
+    // }
 };
 
 // Exports

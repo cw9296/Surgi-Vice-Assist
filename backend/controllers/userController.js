@@ -3,6 +3,7 @@
 const { hashPassword } = require('../hashing');
 const { compareHash } = require('../hashing');
 const { getConnection } = require('./database');
+// var connection = null;
 
 const sendResponse = async (req, res) => {
     try {
@@ -46,6 +47,11 @@ const createAccount = async (req, res) => {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
     }
+    // finally{
+    //     if(connection){
+    //         connection.release();
+    //     }
+    // }
 };
 
 //Exports
