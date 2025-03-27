@@ -35,6 +35,7 @@ const createAccount = async (req, res) => {
         
 
         if(result.affectedRows > 0){
+            req.session.username = username;
             res.status(200).json({ message: "Account Successfully Created!" });
         }
         else{

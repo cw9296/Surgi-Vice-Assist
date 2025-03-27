@@ -68,11 +68,12 @@ export default function CreateAccountScreen({ navigation }) {
                     <Button
                         title="Create Account"
                         color="blue"
-                        onPress={() => {
+                        onPress={async () => {
                             if (!username || !email || !password || !name) {
                                 Alert.alert("Please fill out all fields!");
                             } else {
-                                createAccount(name, username, email, password);
+                                await createAccount(name, username, email, password);
+                                navigation.navigate("LandingPage");
                             }
                         }}
                     />
