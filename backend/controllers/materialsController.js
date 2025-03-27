@@ -19,32 +19,32 @@ const getEducationalMaterials = async (req, res) => {
         // Execute the query and check the result
         const [result] = await connection.execute(query1, [pdfName, infoRequested]);
 
-        //Grabbing the users id given they provided username
-        const query2 = ' SELECT id AS user_id FROM users WHERE username = ?;'
-        console.log("here is username");
-        console.log(username);
+        // //Grabbing the users id given they provided username
+        // const query2 = ' SELECT id AS user_id FROM users WHERE username = ?;'
+        // console.log("here is username");
+        // console.log(username);
 
-        const [userNameResult] = await connection.execute(query2, [username]);
+        // const [userNameResult] = await connection.execute(query2, [username]);
 
-        console.log(result);
+        // console.log(result);
 
-        //educational materials ID
-        const eduId = result.materials_id;
-        const userId = userNameResult.user_id;
-        console.log(eduId);
-        console.log(userId);
+        // //educational materials ID
+        // const eduId = result.materials_id;
+        // const userId = userNameResult.user_id;
+        // console.log(eduId);
+        // console.log(userId);
 
-        //Inserting into profile table
-        const query3 = 'INSERT INTO user_material_views (user_id, material_id) VALUES(?,?);'
+        // //Inserting into profile table
+        // const query3 = 'INSERT INTO user_material_views (user_id, material_id) VALUES(?,?);'
 
-        const profileResult = await connection.execute(query3, [userId, eduId]);
+        // const profileResult = await connection.execute(query3, [userId, eduId]);
 
-        if (profileResult.affectedRows > 0){
-            console.log("Succesfully saved users state")
-        }
-        else{
-            console.log("Something Happened! Check database!")
-        }
+        // if (profileResult.affectedRows > 0){
+        //     console.log("Succesfully saved users state")
+        // }
+        // else{
+        //     console.log("Something Happened! Check database!")
+        // }
 
 
         if (result) { 

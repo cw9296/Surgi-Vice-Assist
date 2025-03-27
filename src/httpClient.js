@@ -14,8 +14,10 @@ export const createAccount = async (Name, username, email, password) => {
       if (response.ok) {
         const data = await response.json();
         console.log(`Account created: ${data.username}`);
+        return true;
       } else {
         console.error('Failed to create account');
+        return false;
       }
     } catch (error) {
       console.error('Error occurred when communicating with API:', error);
@@ -83,7 +85,7 @@ export const createAccount = async (Name, username, email, password) => {
         return false;
       }
   
-      return pdfBase64;
+      return true;
     } catch (error) {
       console.error('Error occurred when communicating with API:', error.message);
     }
