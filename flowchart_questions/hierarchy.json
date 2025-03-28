@@ -87,32 +87,10 @@
             },
             {
                 "text": "No",
-                "next_question": "no_fever",
-                "is_endpoint": false
-            }
-        ]
-    },
-    "no_fever": {
-        "question_text": "Are you experiencing either of the following:",
-        "responses":
-        [
-            {
-                "text": "Discharge or fluid at site",
                 "next_question": "discharge_or_fluid",
                 "is_endpoint": false
-            },
-            {
-                "text": "Intolerable pain at site",
-                "next_question": "intolerable_pain",
-                "is_endpoint": false
-            },
-            {
-                "text": "Something Else",
-                "next_question": "speak_to_team_cant_pinpoint",
-                "is_endpoint": false
             }
         ]
-
     },
     "discharge_or_fluid":
     {
