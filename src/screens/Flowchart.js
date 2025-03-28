@@ -1,25 +1,10 @@
 import {React, useState} from 'react';
-import { Image, StyleSheet, View, Button, Text, ImageBackground, Pressable, Modal} from 'react-native';
+import { Image, StyleSheet, View, Button, Text, TouchableOpacity} from 'react-native';
+import * as questionData from '../../flowchart_questions/hierarchy.json';
 
-const questionData = require('../flowchart_questions/hierarchy.json');
 
 export default function FlowchartScreen({ navigation }) {
-    return(
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
-                </TouchableOpacity>
-        
-              </View>
-    )
+    return(renderQuestionContent(questionData["root"]))
 }
 
 //write a function that takes as input the question to render
@@ -28,13 +13,27 @@ export default function FlowchartScreen({ navigation }) {
 //see my modal example for dynamically generating buttons
 //what to do if a question is an endpoint?
 function renderQuestionContent(question){
-
+  return(
+    <View style={styles.centeredView}>
+      <Text style={styles.text}>{question.question_text}</Text>
+        {question.responses.map((response) => (
+          <TouchableOpacity style={styles.button} onPress={() => {if(!response.endpoint){renderQuestionContent(questionData[response.question])}}}>
+            <Text style={styles.buttonText}>{response.text}</Text>
+          </TouchableOpacity>
+        ))}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f5f5f5',
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     textContainer: {
       flex: 1, // Reduced to move buttons closer
