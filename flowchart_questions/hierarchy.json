@@ -11,7 +11,7 @@
             {
                 "text": "no",
                 "question": "access_material",
-                "endpoint": false
+                "endpoint": true
             },
             {
                 "text": "maybe",
