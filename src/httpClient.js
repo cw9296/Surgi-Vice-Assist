@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 //create account function 
 
 //just change your IP once here
-const ip_addr = '10.47.98.43'
+const ip_addr = '10.47.205.0'
 export const createAccount = async (Name, username, email, password) => {
     try{
         const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {
