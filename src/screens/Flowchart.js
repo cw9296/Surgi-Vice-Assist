@@ -6,6 +6,7 @@ export default function FlowchartScreen({ navigation }) {
   // using a state variable as this seems to be the most simple way to make the page refresh upon selection of a new question.
   const [current_question, setQuestion] = useState("root");
 
+  // dynamically display questions from JSON
   return(
     <View style={styles.centeredView} key={current_question}>
       <Text style={styles.text}>{questionData[current_question].question_text}</Text>
@@ -19,31 +20,6 @@ export default function FlowchartScreen({ navigation }) {
     </View>
   )
 }
-
-//write a function that takes as input the question to render
-//for each response in the question, render a button
-//assign each button an onpress function that re-renders the screen with a new question
-//see my modal example for dynamically generating buttons
-//what to do if a question is an endpoint?
-/*function renderQuestionContent(question){
-  return(
-    <View style={styles.centeredView}
-          key = {current_question}>
-      <Text style={styles.text}>{question.question_text}</Text>
-        {question.responses.map((response) => (
-          <TouchableOpacity style={styles.button} onPress={() => {
-                                                        if(!response.endpoint){
-                                                          current_question = response.question
-                                                        }
-                                                        else {
-                                                        }
-                                                      }}>
-            <Text style={styles.buttonText}>{response.text}</Text>
-          </TouchableOpacity>
-        ))}
-    </View>
-  )
-}*/
 
 const styles = StyleSheet.create({
     container: {
