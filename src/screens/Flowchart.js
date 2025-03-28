@@ -2,9 +2,22 @@ import {React, useState} from 'react';
 import { Image, StyleSheet, View, Button, Text, TouchableOpacity} from 'react-native';
 import * as questionData from '../../flowchart_questions/hierarchy.json';
 
-
 export default function FlowchartScreen({ navigation }) {
-    return(renderQuestionContent(questionData["root"]))
+  // using a state variable as this seems to be the most simple way to make the page refresh upon selection of a new question.
+  const [current_question, setQuestion] = useState("root");
+
+  return(
+    <View style={styles.centeredView} key={current_question}>
+      <Text style={styles.text}>{questionData[current_question].question_text}</Text>
+        {questionData[current_question].responses.map((response) => ( // create list of buttons based on responses to the question
+          <TouchableOpacity style={styles.button} key={response.text} onPress={() => {
+                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate(response.next_question)}
+                        }}>
+            <Text style={styles.buttonText}>{response.text}</Text>
+          </TouchableOpacity>
+        ))}
+    </View>
+  )
 }
 
 //write a function that takes as input the question to render
@@ -12,18 +25,25 @@ export default function FlowchartScreen({ navigation }) {
 //assign each button an onpress function that re-renders the screen with a new question
 //see my modal example for dynamically generating buttons
 //what to do if a question is an endpoint?
-function renderQuestionContent(question){
+/*function renderQuestionContent(question){
   return(
-    <View style={styles.centeredView}>
+    <View style={styles.centeredView}
+          key = {current_question}>
       <Text style={styles.text}>{question.question_text}</Text>
         {question.responses.map((response) => (
-          <TouchableOpacity style={styles.button} onPress={() => {if(!response.endpoint){renderQuestionContent(questionData[response.question])}}}>
+          <TouchableOpacity style={styles.button} onPress={() => {
+                                                        if(!response.endpoint){
+                                                          current_question = response.question
+                                                        }
+                                                        else {
+                                                        }
+                                                      }}>
             <Text style={styles.buttonText}>{response.text}</Text>
           </TouchableOpacity>
         ))}
     </View>
   )
-}
+}*/
 
 const styles = StyleSheet.create({
     container: {
