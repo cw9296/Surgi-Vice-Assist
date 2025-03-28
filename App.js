@@ -9,6 +9,7 @@ import StartScreen from './src/screens/StartScreen'
 import LoginScreen from './src/screens/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen';
 import LandingPage from './src/screens/LandingPage';
+import Flowchart from './src/screens/Flowchart'
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="Flowchart"
           screenOptions={{
             headerShown: false,
           }}
@@ -25,6 +26,8 @@ export default function App() {
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
           <Stack.Screen name="LandingPage" component={LandingPage} />
+          <Stack.Screen name="Flowchart" component={Flowchart} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
