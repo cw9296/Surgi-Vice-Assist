@@ -22,7 +22,7 @@
     },
     "maintenance_or_symptoms":
     {
-        "question_text": "Are you concerned about deivce maintenance or symptoms?",
+        "question_text": "Are you concerned about device maintenance or symptoms?",
         "responses":
         [
             {
