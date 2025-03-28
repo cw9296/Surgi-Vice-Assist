@@ -19,7 +19,7 @@ export default function MyScreen({ navigation }) {
 
       
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Flowchart')}}>
           <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
         </TouchableOpacity>
 
