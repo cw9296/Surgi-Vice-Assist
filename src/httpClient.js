@@ -1,9 +1,10 @@
 //This file will act as the client to communicate with the backend API
 //All calls to the backend should come from this file. 
 //create account function 
+const BASE_URL = "http://10.0.0.43:4000" //CHANGE THIS IP TO YOUR MACHINES IP
 export const createAccount = async (Name, username, email, password) => {
     try {
-      const response = await fetch('http://10.47.229.204:4000/users/createAccount', {
+      const response = await fetch(`${BASE_URL}/users/createAccount`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +27,7 @@ export const createAccount = async (Name, username, email, password) => {
   
   export const testGet = async () => {
     try {
-      const response = await fetch('http://10.47.229.204:4000/users', {
+      const response = await fetch(`${BASE_URL}/users`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ export const createAccount = async (Name, username, email, password) => {
   
   export const auth = async (username, password) => {
     try {
-      const response = await fetch('http://10.47.229.204:4000/auth/', {
+      const response = await fetch(`${BASE_URL}/auth/`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -70,7 +71,7 @@ export const createAccount = async (Name, username, email, password) => {
   
   export const educationalMaterials = async (pdfName, infoRequested) => {
     try {
-      const response = await fetch('http://10.47.229.204:4000/materials/educational', {
+      const response = await fetch(`${BASE_URL}/materials/educational`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ export const createAccount = async (Name, username, email, password) => {
     const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     const infoRequested = 'post-surgery';
     try {
-      const response = await fetch('http://10.47.229.204:4000/profile/retrieve', {
+      const response = await fetch(`${BASE_URL}/profile/retrieve`, {
         method: 'POST',
         credentials: true,
         headers: {
