@@ -6,7 +6,7 @@ const pool = mariadb.createPool({
     user: 'root',
     password: 'root',
     database: 'surgivice_dev',
-    port: 3308
+    port: 3306
 })
 
 //function to connect to surgivice_dev

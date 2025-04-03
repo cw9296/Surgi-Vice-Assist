@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Text, Dimensions, Alert, Vibration, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Camera, CameraView } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
@@ -7,7 +7,6 @@ import { educationalMaterials } from '../httpClient';
 
 export default function CameraScreen() {
     const [hasCameraPermission, setCameraPermission] = useState(null);
-    const [scanned, setScanned] = useState(false);
     const navigation = useNavigation(); // Navigation hook
 
     useEffect(() => {
@@ -32,14 +31,30 @@ export default function CameraScreen() {
         }
     }, [hasCameraPermission]);
 
-    const handleBarCodeScanned = async({ data }) => {
-        setScanned(true);
+    //Ref object with initial value false. Essentially creating a bool that persists across renders. 
+    const scanningRef = useRef(false);
+    
+    const handleBarCodeScanned = async ({ data }) => {
+        if (scanningRef.current){
+            return; // prevent duplicate scans
+        }
+
+        scanningRef.current = true;
+        // setScanned(true);
         Vibration.vibrate();
-        Alert.alert("QR Code Scanned!", `Data: ${data}`);
-        const [title, category] = data.split(":");
-        console.log()
-        const pdf = await educationalMaterials(title, category);
-        navigation.navigate("PdfViewer", { pdfBase64: pdf });
+    
+        try {
+            // Alert.alert("QR Code Scanned!", `Data: ${data}`);
+            const [title, category] = data.split(":");
+            const pdf = await educationalMaterials(title, category);
+            navigation.navigate("PdfViewer", { pdfBase64: pdf });
+        } catch (err) {
+            console.error("QR scan error:", err);
+        } finally {
+            setTimeout(() => {
+                scanningRef.current = false; // allow scanning again after short delay
+            }, 2000); //2 seconds
+        }
     };
 
     const handleCloseCamera = () => {
@@ -56,7 +71,7 @@ export default function CameraScreen() {
     return (
         <View style={styles.container}>
             <CameraView
-                onBarcodeScanned={scanned ? undefined : handleBarCodeScanned} //only scan once
+                onBarcodeScanned={ handleBarCodeScanned } //only scan once
                 barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
                 style={StyleSheet.absoluteFillObject}
             />

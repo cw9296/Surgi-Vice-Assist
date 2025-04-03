@@ -4,15 +4,18 @@ const fs = require('fs');
 
 // Will insert data into the users table
 const getEducationalMaterials = async (req, res) => {
+    let connection;
     try {
-        const connection = await getConnection();
+        connection = await getConnection();
 
-        const { pdfName, infoRequested } = req.body;
+        const { name, infoRequested } = req.body;
+        console.log(name, infoRequested);
+        console.log(req.body);
 
         const query = 'SELECT file_path FROM educational_materials WHERE title = ? AND category = ?;';
 
         // Execute the query and check the result
-        const [result] = await connection.execute(query, [pdfName, infoRequested]);
+        const [result] = await connection.execute(query, [name, infoRequested]);
 
         console.log(result);
 
@@ -32,12 +35,16 @@ const getEducationalMaterials = async (req, res) => {
                 });
             });
         } else {
-            console.log('in else');
             res.status(500).json({ message: "Error while querying database" });
         }
     } catch (error) {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
+    }
+    finally{
+        if(connection){
+            connection.release();
+        }
     }
 };
 
