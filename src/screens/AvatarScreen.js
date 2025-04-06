@@ -1,6 +1,5 @@
 import {React, useState} from 'react';
 import { Image, StyleSheet, View, Button, Text, ImageBackground, Pressable, Modal} from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import SvgAvatar from '../../assets/avatar_svg_handler';
 
 // const AntDesign = require('@expo/vector-icons/AntDesign');
@@ -51,49 +50,7 @@ export default function AvatarScreen({ navigation }) {
 }
 
 
-// handles the logic for each black info button
-const IconButton = ({ options, locationstyle }) => {
-  // defines modalVisible (true/false) and its setter
-  const [modalVisible, setModalVisible] = useState(false);
-  // defines the info icon 
-  const icon = <AntDesign name="infocirlce" style={locationstyle} color='black' size={25} />
-  // iterates through the list of options and creates a button element for each option
-  const modal_items = options.map((item) => 
-    <View padding={2} key={item.option}>
-  <Pressable key={item.option} style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(!modalVisible)}>
-    <Text style={styles.textStyle} key={item.option}>{item.option}</Text>
-  </Pressable>
-  </View>
-  )
-  // returns modal which can be activated by clicking an info button
-  return(
-    <View>
-      <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-        setModalVisible(!modalVisible);
-      }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Select procedure:</Text>
-              {modal_items}
-              <View padding={2}>
-              <Pressable style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.textStyle}>Back</Text>
-              </Pressable>
-              </View>
-          </View>
-        </View>
-      </Modal>
-      {/* <Pressable onPress={() => setModalVisible(!modalVisible)}>{icon}</Pressable> */}
-      </View>
-  );
-};
-
-const styles = StyleSheet.create({
+const styles = {
     container: {
       flex: 1,
       backgroundColor: 'white',
@@ -178,4 +135,4 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       textAlign: 'center',
     },
-  })
+  }
