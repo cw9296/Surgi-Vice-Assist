@@ -23,12 +23,13 @@ test('All components render', async ()=>{
     const legs = screen.queryByTestId('Legs');
     expect(legs).toBeDefined();
     const head = screen.queryByTestId('Head');
-    expect(legs).toBeDefined();
+    expect(head).toBeDefined();
     const lf_arm = screen.queryByTestId('Lf_Arm');
-    expect(legs).toBeDefined();
+    expect(lf_arm).toBeDefined();
     const rt_arm = screen.queryByTestId('Rt_Arm');
-    expect(legs).toBeDefined();
+    expect(rt_arm).toBeDefined();
     const chest = screen.queryByTestId('Chest');
+    expect(chest).toBeDefined();
 });
 test('Entire SVG renders on screen', ()=>{
     render(<AvatarScreen />);
