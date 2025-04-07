@@ -3,7 +3,7 @@
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
 //create account function 
 
-const ip_addr = '10.47.113.212'
+const ip_addr = '10.47.50.50'
 export const createAccount = async (Name, username, email, password) => {
     try{
         const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {

@@ -44,8 +44,9 @@ export default function SvgAvatar(props) {
   async function handleModalPress(){
     console.log("called")
     setModalVisible(!modalVisible);
-    const pdf = await educationalMaterials();  
-    navigation.navigate('PdfViewer', { pdfBase64: pdf })
+    // const pdf = await educationalMaterials();  
+    // navigation.navigate('PdfViewer', { pdfBase64: pdf })
+    navigation.navigate('LandingPage');
   }
 
   const RegionModal = () => {
