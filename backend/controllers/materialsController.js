@@ -5,8 +5,9 @@ const fs = require('fs');
 
 // Will insert data into the users table
 const getEducationalMaterials = async (req, res) => {
+    let connection;
     try {
-        const connection = await getConnection();
+        connection = await getConnection();
 
         const { pdfName, infoRequested } = req.body;
 
@@ -38,11 +39,11 @@ const getEducationalMaterials = async (req, res) => {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
     }
-    // finally{
-    //     if(connection){
-    //         connection.release();
-    //     }
-    // }
+    finally{
+        if(connection){
+            connection.release();
+        }
+    }
 };
 
 // Exports

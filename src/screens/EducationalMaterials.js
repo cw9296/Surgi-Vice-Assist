@@ -5,48 +5,51 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import * as FileSystem from 'expo-file-system';
 import { Buffer } from 'buffer';
 
-export default function MyScreen({ navigation }) {
+export default function MyScreen({ navigation, route }) {
+  // we are passed the selected procedure from the previous screen
+  const { procedure } = route.params;
   useEffect(() => {
     // Lock to portrait mode
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, []);
+  async function handleOnPress(navigation, infoRequested) {
+      try {
+        //Calling packager to retrieve PDF
+        const pdf = await educationalMaterials(procedure, infoRequested);  
+
+        if(pdf){
+          //send Base64 encoded pdf to PdfViewer Page
+          navigation.navigate('PdfViewer', { pdfBase64: pdf });
+        }
+        else{
+          throw new Error('Issue retrieving PDF');
+        }
+
+        
+    } catch (error) {
+        console.error("Error loading PDF:", error);
+        Alert.alert("Failed to load PDF");
+    }
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity style={styles.button} 
+          onPress={() =>{handleOnPress(navigation, "pre-surgery")}}>
             <Text style={styles.buttonText}>PRE-SURGERY</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <TouchableOpacity style={styles.button} 
+          onPress={() =>{handleOnPress(navigation, "day-of")}}>
             <Text style={styles.buttonText}>DAY OF</Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
             style={styles.button} 
-            onPress={async () => {
-              try {
-                    //Calling packager to retrieve PDF
-                    const pdf = await educationalMaterials();  
-
-                    if(pdf){
-                      //send Base64 encoded pdf to PdfViewer Page
-                      navigation.navigate('PdfViewer', { pdfBase64: pdf });
-                    }
-                    else{
-                      throw new Error('Issue retrieving PDF');
-                    }
-
-                    
-                } catch (error) {
-                    console.error("Error loading PDF:", error);
-                    Alert.alert("Failed to load PDF");
-                }
-              }
-            }
-            
+            onPress={() =>{handleOnPress(navigation, "post-surgery")}}
           >
             <Text style={styles.buttonText}>POST-SURGERY</Text>
           </TouchableOpacity>

@@ -67,7 +67,7 @@ function SvgAvatar(navigation) {
   const [isPressed, setIsPressed] = useState(regionsPressed);
   const [modalVisible, setModalVisible] = useState(false);
 
-  async function handleModalPress(){
+  async function handleModalPress(region, proc){
     console.log("called")
     if (getPressStatus(region)){
       //un press it
@@ -77,15 +77,15 @@ function SvgAvatar(navigation) {
       setPressStatus(region, true)
     }
     setModalVisible(!modalVisible);
-    const pdf = await educationalMaterials();  
-    if(pdf){
-      navigation.navigate('PdfViewer', { pdfBase64: pdf });
-    }
-    else{
-      console.warn("Issue with pdf.");
-    }
+    // const pdf = await educationalMaterials();  
+    // if(pdf){
+    //   navigation.navigate('PdfViewer', { pdfBase64: pdf });
+    // }
+    // else{
+    //   console.warn("Issue with pdf.");
+    // }
     
-    // navigation.navigate('LandingPage');
+    navigation.navigate('EducationalMaterials', { procedure: proc});
   }
 
   const RegionModal = () => {
@@ -103,7 +103,7 @@ function SvgAvatar(navigation) {
     }
     const modal_items = options.map((item) => 
         <View padding={2} key={item.option}>
-      <Pressable key={item.option} style={[styles.button, styles.buttonOpen]} onPress={() => {handleModalPress(region)}}>
+      <Pressable key={item.option} style={[styles.button, styles.buttonOpen]} onPress={() => {handleModalPress(region, item.option)}}>
         <Text style={styles.textStyle} key={item.option}>{item.option}</Text>
       </Pressable>
       </View>

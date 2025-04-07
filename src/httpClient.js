@@ -1,6 +1,7 @@
 //This file will act as the client to communicate with the backend API
 //All calls to the backend should come from this file. 
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import * as procedureMappings from './procedure_mappings.json';
 //create account function 
 
 const ip_addr = '10.47.50.50'
@@ -88,10 +89,11 @@ export const auth = async (username, password) => {
 };
 
 //Educational Materials packager
-export const educationalMaterials = async () => {
+export const educationalMaterials = async (procedureName, infoRequested) => {
 
-    const pdfName = 'Taking Care of Your Flushable Drain Tubes';
-    const infoRequested = 'post-surgery';
+    const pdfName = procedureMappings["mappings"][procedureName][infoRequested]
+    // const pdfName = 'Taking Care of Your Flushable Drain Tubes';
+    //const infoRequested = 'post-surgery';
     try{
         const response = await fetch('http://'+ip_addr+':4000/materials/educational', {
             method: 'POST',

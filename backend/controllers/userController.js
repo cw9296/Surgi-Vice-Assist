@@ -17,8 +17,9 @@ const sendResponse = async (req, res) => {
 
 //Will insert data into the users table
 const createAccount = async (req, res) => {
+    let connection;
     try{
-        const connection = await getConnection();
+        connection = await getConnection();
 
         const {Name, username, email, password} = req.body;
 
@@ -47,11 +48,11 @@ const createAccount = async (req, res) => {
         console.error("Error occured while querying database", error);
         res.status(500).json({ message: "Server Error" });
     }
-    // finally{
-    //     if(connection){
-    //         connection.release();
-    //     }
-    // }
+    finally{
+        if(connection){
+            connection.release();
+        }
+    }
 };
 
 //Exports

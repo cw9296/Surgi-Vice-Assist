@@ -1,0 +1,30 @@
+{
+    "mappings":
+    {
+        "Flushable Drain": {
+            "pre-surgery": "Taking Care of Your Flushable Drain Tubes",
+            "day-of": "Taking Care of Your Flushable Drain Tubes",
+            "post-surgery": "Taking Care of Your Flushable Drain Tubes"
+        },
+        "Suction Drain": {
+            "pre-surgery": "Gravity Drain",
+            "day-of": "Gravity Drain",
+            "post-surgery": "Gravity Drain"
+        },
+        "Gravity Drain": {
+            "pre-surgery": "Gravity Drain",
+            "day-of": "Gravity Drain",
+            "post-surgery": "Gravity Drain"
+        },
+        "Port / Port-A-Cath": {
+            "pre-surgery": "Gravity Drain",
+            "day-of": "Gravity Drain",
+            "post-surgery": "Gravity Drain"
+        },
+        "PICC Line": {
+            "pre-surgery": "Gravity Drain",
+            "day-of": "Gravity Drain",
+            "post-surgery": "Gravity Drain"
+        }
+    }
+}

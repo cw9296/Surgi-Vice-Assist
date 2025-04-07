@@ -6,8 +6,9 @@ const { compareHash } = require('../hashing');
 
 const authUser = async (req, res) => {
     let {username, password}  = req.body;
+    let connection;
     try{
-            const connection = await getConnection();
+            connection = await getConnection();
   
             //Pulling the password out of database
             const query = 'SELECT password FROM users WHERE username = ?';
@@ -43,11 +44,11 @@ const authUser = async (req, res) => {
         console.error("Error occured while querying database", error);
         return res.status(500).json({ message: "Internal Server Error" }); 
     }
-    // finally{
-    //     if(connection){
-    //         connection.release();
-    //     }
-    // }
+    finally{
+        if(connection){
+            connection.release();
+        }
+    }
 };
 
 //Exports
