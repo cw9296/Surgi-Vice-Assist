@@ -1,0 +1,20 @@
+{
+    "questions":
+    [
+        {"root": "Are you having issues or concerns with your device?"},
+        {"maintenance_or_symptoms": "Are you concerned about deivce maintenance or symptoms?"},
+        {"which_device": "Which device are you concerned about?"},
+        {"access_material": "Would you like to access reading material and videos about your device?"},
+        {"fever": "Do you have a fever you believe is associated with your device?"},
+        {"discharge_or_fluid": "Is there discharge or fluid at wound site?"},
+        {"intolerable_pain": "Is there intolerable pain at wound site?"},
+        {"length_of_pain": "How long has the pain been intolerable?"},
+        {"something_else": "Is there something else you are concerned about?"},
+        {"draining": "How long has the wound been draining?"},
+        {"speak_to_team_cant_pinpoint": "I’m having trouble pinpointing your concern. Would you like to speak to someone from your care team?"},
+        {"speak_to_team_watch_12hr": "We typically watch this symptom for 12 hours and if it persists, bring you in for a clinic visit. Would you like to wait or speak to someone from your care team now?"},
+        {"speak_to_team_optimal_recovery": "For optimal recovery, we recommend speaking to someone on your care team. How does that sound?"},
+        {"speak_to_team_ER": "You may need to go to the ER, but to be sure, would you like to speak to someone from your care team?"}
+
+    ]
+}

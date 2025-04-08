@@ -13,6 +13,7 @@ import AvatarScreen from './src/screens/AvatarScreen'
 import MenuProvider from 'react-native-popup-menu';
 import EducationalMaterials from './src/screens/EducationalMaterials';
 import PdfViewer from './src/screens/PdfViewer';
+import Flowchart from './src/screens/Flowchart';
 
 const Stack = createStackNavigator()
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
           <Stack.Screen name="EducationalMaterials" component={EducationalMaterials} />
           <Stack.Screen name="PdfViewer" component={PdfViewer} />
+          <Stack.Screen name="Flowchart" component={Flowchart} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

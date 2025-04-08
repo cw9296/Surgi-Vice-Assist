@@ -20,6 +20,12 @@ export default function MyScreen({ navigation }) {
         </View>
 
         <View style={styles.buttonContainer}>
+        <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => navigation.navigate('Flowchart')}
+          >
+            <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
+          </TouchableOpacity>
           <TouchableOpacity 
             style={styles.button} 
             onPress={() => navigation.navigate('AvatarScreen')}
