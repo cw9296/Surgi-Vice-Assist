@@ -132,7 +132,7 @@ export const getProfileInfo = async () => {
     const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     const infoRequested = 'post-surgery';
     try{
-        const response = await fetch('http://10.47.13.45:4000/profile/retrieve', {
+        const response = await fetch('http://'+ip_addr+':4000/profile/retrieve', {
             method: 'POST',
             credentials: true,
             headers: {
