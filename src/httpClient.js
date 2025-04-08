@@ -1,10 +1,13 @@
 //This file will act as the client to communicate with the backend API
 //All calls to the backend should come from this file. 
 import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-native';
+import * as procedureMappings from './procedure_mappings.json';
 //create account function 
+
+const ip_addr = '10.47.50.50'
 export const createAccount = async (Name, username, email, password) => {
     try{
-        const response = await fetch('http://10.47.13.45:4000/users/createAccount', {
+        const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,6 +22,7 @@ export const createAccount = async (Name, username, email, password) => {
             const data = await response.json();
             Alert.alert('Success', `Account created`); // Display data in alert
           } else {
+            console.warn('Response details: '+response.status+' '+response.statusText)
             Alert.alert('Error', 'Failed to create account');
           }
 
@@ -30,7 +34,7 @@ export const createAccount = async (Name, username, email, password) => {
 
 export const testGet = async () => {
     try{
-        const response = await fetch('http://10.47.229.204:4000/users', {
+        const response = await fetch('http://'+ip_addr+':4000/users', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +55,7 @@ export const testGet = async () => {
 //Auth packager
 export const auth = async (username, password) => {
     try{
-        const response = await fetch('http://10.47.13.45:4000/auth/', {
+        const response = await fetch('http://'+ip_addr+':4000/auth/', {
             method: 'POST',
             credentials: 'include', 
             headers: {
@@ -88,12 +92,13 @@ export const auth = async (username, password) => {
 };
 
 //Educational Materials packager
-export const educationalMaterials = async (pdfName, infoRequested) => {
+export const educationalMaterials = async (procedureName, infoRequested) => {
 
+    const pdfName = procedureMappings["mappings"][procedureName][infoRequested]
     // const pdfName = 'Taking Care of Your Flushable Drain Tubes';
-    //  const infoRequested = 'post-surgery';
+    //const infoRequested = 'post-surgery';
     try{
-        const response = await fetch('http://10.47.13.45:4000/materials/educational', {
+        const response = await fetch('http://'+ip_addr+':4000/materials/educational', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

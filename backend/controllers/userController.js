@@ -3,6 +3,7 @@
 const { hashPassword } = require('../hashing');
 const { compareHash } = require('../hashing');
 const { getConnection } = require('./database');
+// var connection = null;
 
 const sendResponse = async (req, res) => {
     try {

@@ -9,6 +9,8 @@ import StartScreen from './src/screens/StartScreen'
 import LoginScreen from './src/screens/LoginScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen';
 import LandingPage from './src/screens/LandingPage';
+import AvatarScreen from './src/screens/AvatarScreen'
+import MenuProvider from 'react-native-popup-menu';
 import EducationalMaterials from './src/screens/EducationalMaterials';
 import PdfViewer from './src/screens/PdfViewer';
 
@@ -19,15 +21,16 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="LandingPage"
           screenOptions={{
             headerShown: false,
           }}
         >
+          <Stack.Screen name="LandingPage" component={LandingPage} options={{ gestureEnabled: false }}/>
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
-          <Stack.Screen name="LandingPage" component={LandingPage} options={{ gestureEnabled: false }} />
+          <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
           <Stack.Screen name="EducationalMaterials" component={EducationalMaterials} />
           <Stack.Screen name="PdfViewer" component={PdfViewer} />
         </Stack.Navigator>

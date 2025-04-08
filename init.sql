@@ -25,6 +25,30 @@ CREATE TABLE IF NOT EXISTS educational_materials (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- Add necessary material to database
+INSERT INTO educational_materials (
+  surgery_name,
+  title,
+  category,
+  file_path,
+  description
+)
+VALUES 
+(
+  NULL,
+  'Taking Care of Your Flushable Drain Tubes',
+  'post-surgery',
+  '/pdf_resources/post-surgery/Flushable_Drains.pdf',
+  'Post-Surgery PDF for Flushable Drain Tube Maintenance and Recovery'
+),
+(
+  NULL,
+  'Gravity Drain',
+  'post-surgery',
+  '/pdf_resources/post-surgery/Gravity_Drains.pdf',
+  'PDF describing how to care for a gravity drain.'
+);
+
 CREATE TABLE IF NOT EXISTS user_material_views (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,

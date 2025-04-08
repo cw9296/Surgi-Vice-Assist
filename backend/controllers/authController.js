@@ -2,6 +2,7 @@
 //Pulling in the database connection
 const { getConnection } = require('./database');
 const { compareHash } = require('../hashing');
+// var connection = null;
 
 const authUser = async (req, res) => {
     let connection;

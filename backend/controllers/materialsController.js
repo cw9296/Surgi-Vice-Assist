@@ -1,6 +1,7 @@
 const { getConnection } = require('./database');
 const path = require('path');
 const fs = require('fs');
+//var connection = null;
 
 //grabbing the path for the PDF file 
 const getEducationalMaterials = async (req, res) => {
@@ -63,7 +64,7 @@ const getEducationalMaterials = async (req, res) => {
                 });
             });
         } else {
-            console.log('in else');
+            console.log('Error while querying database: result not valid');
             res.status(500).json({ message: "Error while querying database" });
         }
     } catch (error) {
