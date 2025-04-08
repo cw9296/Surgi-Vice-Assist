@@ -92,9 +92,17 @@ export const auth = async (username, password) => {
 };
 
 //Educational Materials packager
-export const educationalMaterials = async (procedureName, infoRequested) => {
+export const educationalMaterials = async (procedureName, infoRequested, isqrcode) => {
 
-    const pdfName = procedureMappings["mappings"][procedureName][infoRequested]
+    //not a procedure name from avatar screen but instead a pdf name from QR code
+    if(isqrcode){
+        const pdfName = procedureName;
+    }
+    else{// is a procedure name coming from avatar screen
+        const pdfName = procedureMappings["mappings"][procedureName][infoRequested]
+    }
+
+    
     // const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     //const infoRequested = 'post-surgery';
     try{

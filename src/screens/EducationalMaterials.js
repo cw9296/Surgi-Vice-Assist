@@ -15,7 +15,9 @@ export default function MyScreen({ navigation, route }) {
   async function handleOnPress(navigation, infoRequested) {
       try {
         //Calling packager to retrieve PDF
-        const pdf = await educationalMaterials(procedure, infoRequested);  
+        //we should be safe to assume that the user bypasses this page when scanning the QR code
+            //so we pass in false
+        const pdf = await educationalMaterials(procedure, infoRequested, false);  
 
         if(pdf){
           //send Base64 encoded pdf to PdfViewer Page

@@ -46,7 +46,7 @@ export default function CameraScreen() {
         try {
             // Alert.alert("QR Code Scanned!", `Data: ${data}`);
             const [title, category] = data.split(":");
-            const pdf = await educationalMaterials(title, category);
+            const pdf = await educationalMaterials(title, category, true);
             navigation.navigate("PdfViewer", { pdfBase64: pdf });
         } catch (err) {
             console.error("QR scan error:", err);

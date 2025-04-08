@@ -51,6 +51,13 @@ export default function MyScreen({ navigation }) {
             <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => navigation.navigate('QRCodeScreen')}
+          >
+            <Text style={styles.buttonText}>SCAN QR CODE</Text>
+          </TouchableOpacity>
+
         </View>
 
       </View>
