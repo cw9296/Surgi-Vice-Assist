@@ -24,17 +24,18 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="QRCodeScreen"
+          initialRouteName="StartScreen"
           screenOptions={{
             headerShown: false,
           }}
         >
-          <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
-          <Stack.Screen name="CameraScreen" component={CameraScreen} />
+
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LandingPage" component={LandingPage} options={{ gestureEnabled: false }}/>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
+          <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
+          <Stack.Screen name="CameraScreen" component={CameraScreen} />
           <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
           <Stack.Screen name="EducationalMaterials" component={EducationalMaterials} />
           <Stack.Screen name="PdfViewer" component={PdfViewer} />

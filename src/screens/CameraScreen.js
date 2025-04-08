@@ -13,6 +13,7 @@ export default function CameraScreen() {
         const requestPermissions = async () => {
             const { status } = await Camera.requestCameraPermissionsAsync();
             setCameraPermission(status === "granted");
+            console.log('permission granted')
         };
 
         requestPermissions();
@@ -44,7 +45,7 @@ export default function CameraScreen() {
         Vibration.vibrate();
     
         try {
-            // Alert.alert("QR Code Scanned!", `Data: ${data}`);
+            console.log("QR Code Scanned!", `Data: ${data}`);
             const [title, category] = data.split(":");
             const pdf = await educationalMaterials(title, category, true);
             navigation.navigate("PdfViewer", { pdfBase64: pdf });
