@@ -103,7 +103,7 @@ export const educationalMaterials = async (procedureName, infoRequested) => {
             headers: {
                 'Content-Type': 'application/json',
             }, 
-            body: JSON.stringify({pdfName, infoRequested}),
+            body: JSON.stringify({name, infoRequested}),
         });
         
         // Parse the JSON response

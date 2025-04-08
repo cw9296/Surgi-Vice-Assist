@@ -15,6 +15,8 @@ import EducationalMaterials from './src/screens/EducationalMaterials';
 import PdfViewer from './src/screens/PdfViewer';
 import Flowchart from './src/screens/Flowchart';
 
+import QRCodeScreen from './src/screens/QRCodeScreen';
+import CameraScreen from './src/screens/CameraScreen';
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -22,11 +24,13 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="QRCodeScreen"
           screenOptions={{
             headerShown: false,
           }}
         >
+          <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
+          <Stack.Screen name="CameraScreen" component={CameraScreen} />
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LandingPage" component={LandingPage} options={{ gestureEnabled: false }}/>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
