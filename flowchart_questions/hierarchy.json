@@ -5,35 +5,73 @@
         "responses":
         [
             {   "text": "yes",
-                "question": "maintenance_or_symptoms",
-                "endpoint": false
+                "next_question": "maintenance_or_symptoms",
+                "is_endpoint": false
             },
             {
                 "text": "no",
-                "question": "access_material",
-                "endpoint": false
+                "next_question": "access_material",
+                "is_endpoint": false
             },
             {
                 "text": "maybe",
-                "question": "maintenance_or_symptoms",
-                "endpoint": false
+                "next_question": "maintenance_or_symptoms",
+                "is_endpoint": false
+            }
+        ]
+    },
+    "access_material":
+    {
+        "question_text": "Would you like to access reading material and videos about your device?",
+        "responses":
+        [
+            {
+                "text": "Yes",
+                "next_question": "LandingPage",
+                "is_endpoint": true
+            },
+            {
+                "text": "No",
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     },
     "maintenance_or_symptoms":
     {
-        "question_text": "Are you concerned about deivce maintenance or symptoms?",
+        "question_text": "Are you concerned about device maintenance or symptoms?",
         "responses":
         [
             {
                 "text": "maintenance",
-                "question": "For maintenance, please read this information or watch this video.",
-                "endpoint": true
+                "next_question": "which_device",
+                "is_endpoint": false
             },
             {
                 "text": "symptoms",
-                "question": "fever",
-                "endpoint": false
+                "next_question": "fever",
+                "is_endpoint": false
+            }
+        ]
+    },
+    "which_device": {
+        "question_text": "Which device are you concerned about?",
+        "responses":
+        [
+            {
+                "text": "device 1",
+                "next_question": "LandingPage",
+                "is_endpoint": true
+            },
+            {
+                "text": "device 2",
+                "next_question": "LandingPage",
+                "is_endpoint": true
+            },
+            {
+                "text": "device 3",
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     },
@@ -43,24 +81,14 @@
         "responses":
         [
             {
-                "text": "yes",
-                "question": "speak_to_team_ER",
-                "endpoint": false
+                "text": "Yes",
+                "next_question": "speak_to_team_ER",
+                "is_endpoint": false
             },
             {
-                "text": "No -- Discharge or fluid at site",
-                "question": "discharge_or_fluid",
-                "endpoint": false
-            },
-            {
-                "text": "No -- Intolerable pain at site",
-                "question": "intolerable_pain",
-                "endpoint": false
-            },
-            {
-                "text": "No -- Something Else",
-                "question": "something_else",
-                "endpoint": false
+                "text": "No",
+                "next_question": "discharge_or_fluid",
+                "is_endpoint": false
             }
         ]
     },
@@ -71,13 +99,13 @@
         [
             {
                 "text": "yes",
-                "question": "draining",
-                "endpoint": false
+                "next_question": "draining",
+                "is_endpoint": false
             },
             {
                 "text": "no",
-                "question": "intolerable_pain",
-                "endpoint": false
+                "next_question": "intolerable_pain",
+                "is_endpoint": false
             }
         ]
     },
@@ -87,13 +115,58 @@
         "responses":[
             {
                 "text": "Greater than 12 hours",
-                "question": "speak_to_team_optimal_recovery",
-                "endpoint": false
+                "next_question": "speak_to_team_optimal_recovery",
+                "is_endpoint": false
             },
             {
                 "text": "Less than 12 hours",
-                "question": "speak_to_team_watch_12hr",
-                "endpoint": false
+                "next_question": "speak_to_team_watch_12hr",
+                "is_endpoint": false
+            }
+        ]
+    },
+    "intolerable_pain":{
+        "question_text": "Is there intolerable pain at wound site?",
+        "responses":[
+            {
+                "text": "Yes",
+                "next_question": "length_of_pain",
+                "is_endpoint": false
+            },
+            {
+                "text": "No",
+                "next_question": "speak_to_team_cant_pinpoint",
+                "is_endpoint": false
+            }
+        ]
+    },
+    "length_of_pain": {
+        "question_text": "How long has the pain been intolerable?",
+        "responses":[
+            {
+                "text": "Less than 12 hours",
+                "next_question": "speak_to_team_watch_12hr",
+                "is_endpoint": false
+            },
+            {
+                "text": "Greater than 12 hours",
+                "next_question": "speak_to_team_optimal_recovery",
+                "is_endpoint": false
+            }
+        ]
+    },
+    "speak_to_team_ER": {
+        "question_text": "You may need to go to the ER, but to be sure, would you like to speak to someone from your care team?",
+        "responses":[
+            {
+                "text": "Sure!",
+                "next_question": "LandingPage",
+                "is_endpoint": true
+            },
+            {
+                "text": "No thanks.",
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     },
@@ -103,13 +176,13 @@
         "responses":[
             {
                 "text": "Sure!",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             },
             {
                 "text": "No thanks.",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     },
@@ -119,44 +192,29 @@
         "responses":[
             {
                 "text": "Wait",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             },
             {
                 "text": "Speak now",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     },
-    "intolerable_pain":{
-        "question_text": "Is there intolerable pain at wound site?",
-        "responses":[
-            {
-                "text": "Greater than 12 hours",
-                "question": "speak_to_team_optimal_recovery",
-                "endpoint": false
-            },
-            {
-                "text": "Less than 12 hours",
-                "question": "speak_to_team_watch_12hr",
-                "endpoint": false
-            }
-        ]
-    },
-    "something_else":
+    "speak_to_team_cant_pinpoint":
     {
         "question_text": "I’m having trouble pinpointing your concern. Would you like to speak to someone from your care team?",
         "responses":[
             {
                 "text": "Sure!",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             },
             {
                 "text": "No thanks.",
-                "question": "",
-                "endpoint": true
+                "next_question": "LandingPage",
+                "is_endpoint": true
             }
         ]
     }

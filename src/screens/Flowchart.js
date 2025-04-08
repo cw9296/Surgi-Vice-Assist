@@ -1,40 +1,35 @@
 import {React, useState} from 'react';
-import { Image, StyleSheet, View, Button, Text, ImageBackground, Pressable, Modal} from 'react-native';
-
-const questionData = require('../flowchart_questions/hierarchy.json');
+import { Image, StyleSheet, View, Button, Text, TouchableOpacity} from 'react-native';
+import * as questionData from '../../flowchart_questions/hierarchy.json';
 
 export default function FlowchartScreen({ navigation }) {
-    return(
-              <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>NOT FEELING WELL?</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>FIND YOUR SURGERY</Text>
-                </TouchableOpacity>
-        
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                  <Text style={styles.buttonText}>PICK UP WHERE YOU LEFT OFF</Text>
-                </TouchableOpacity>
-        
-              </View>
-    )
-}
+  // using a state variable as this seems to be the most simple way to make the page refresh upon selection of a new question.
+  const [current_question, setQuestion] = useState("root");
 
-//write a function that takes as input the question to render
-//for each response in the question, render a button
-//assign each button an onpress function that re-renders the screen with a new question
-//see my modal example for dynamically generating buttons
-//what to do if a question is an endpoint?
-function renderQuestionContent(question){
-
+  // dynamically display questions from JSON
+  return(
+    <View style={styles.centeredView} key={current_question}>
+      <Text style={styles.text}>{questionData[current_question].question_text}</Text>
+        {questionData[current_question].responses.map((response) => ( // create list of buttons based on responses to the question
+          <TouchableOpacity style={styles.button} key={response.text} onPress={() => {
+                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate(response.next_question)}
+                        }}>
+            <Text style={styles.buttonText}>{response.text}</Text>
+          </TouchableOpacity>
+        ))}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f5f5f5',
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     textContainer: {
       flex: 1, // Reduced to move buttons closer

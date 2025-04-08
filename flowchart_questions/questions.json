@@ -2,7 +2,7 @@
     "questions":
     [
         {"root": "Are you having issues or concerns with your device?"},
-        {"maintenance_or_symptoms": "Are you concerned about deivce maintenance or symptoms?"},
+        {"maintenance_or_symptoms": "Are you concerned about device maintenance or symptoms?"},
         {"which_device": "Which device are you concerned about?"},
         {"access_material": "Would you like to access reading material and videos about your device?"},
         {"fever": "Do you have a fever you believe is associated with your device?"},
