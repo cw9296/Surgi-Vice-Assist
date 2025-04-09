@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 import * as procedureMappings from './procedure_mappings.json';
 //create account function 
 
-const ip_addr = '10.47.50.50'
+const ip_addr = '10.47.251.248'
 export const createAccount = async (Name, username, email, password) => {
     try{
         const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {
@@ -91,27 +91,33 @@ export const auth = async (username, password) => {
     }
 };
 
+
 //Educational Materials packager
 export const educationalMaterials = async (procedureName, infoRequested, isqrcode) => {
-
-    //not a procedure name from avatar screen but instead a pdf name from QR code
-    if(isqrcode){
-        const pdfName = procedureName;
-    }
-    else{// is a procedure name coming from avatar screen
-        const pdfName = procedureMappings["mappings"][procedureName][infoRequested]
-    }
 
     
     // const pdfName = 'Taking Care of Your Flushable Drain Tubes';
     //const infoRequested = 'post-surgery';
     try{
+
+        let pdfName;
+
+        //not a procedure name from avatar screen but instead a pdf name from QR code
+        if(isqrcode){
+             pdfName = procedureName;
+        }
+        else{// is a procedure name coming from avatar screen
+            pdfName = procedureMappings["mappings"][procedureName][infoRequested]
+            console.log("RIGHT HERE")
+            console.log(pdfName);
+        }
+
         const response = await fetch('http://'+ip_addr+':4000/materials/educational', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             }, 
-            body: JSON.stringify({name, infoRequested}),
+            body: JSON.stringify({pdfName, infoRequested}),
         });
         
         // Parse the JSON response

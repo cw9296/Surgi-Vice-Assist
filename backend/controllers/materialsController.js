@@ -11,6 +11,10 @@ const getEducationalMaterials = async (req, res) => {
 
         const { pdfName, infoRequested} = req.body;
 
+        console.log("PDF NAME and INFO")
+
+        console.log(pdfName, infoRequested)
+
         //pulling in username from session variables
         const username = req.session.username;
 

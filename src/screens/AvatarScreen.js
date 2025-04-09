@@ -84,8 +84,11 @@ function SvgAvatar(navigation) {
     // else{
     //   console.warn("Issue with pdf.");
     // }
+
+    console.log(proc);
     
     navigation.navigate('EducationalMaterials', { procedure: proc});
+
   }
 
   const RegionModal = () => {

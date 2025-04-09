@@ -17,6 +17,7 @@ export default function MyScreen({ navigation, route }) {
         //Calling packager to retrieve PDF
         //we should be safe to assume that the user bypasses this page when scanning the QR code
             //so we pass in false
+        console.log(procedure, infoRequested);
         const pdf = await educationalMaterials(procedure, infoRequested, false);  
 
         if(pdf){
@@ -37,15 +38,15 @@ export default function MyScreen({ navigation, route }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-
+    {/* BUTTONS ARE ALL HARD CODED TO SEND POST-SURGERY RIGHT NOW. THAT WILL CHANGE WHEN MORE PDF ARE PROVIDED */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} 
-          onPress={() =>{handleOnPress(navigation, "pre-surgery")}}>
+          onPress={() =>{handleOnPress(navigation, "post-surgery")}}>
             <Text style={styles.buttonText}>PRE-SURGERY</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button} 
-          onPress={() =>{handleOnPress(navigation, "day-of")}}>
+          onPress={() =>{handleOnPress(navigation, "post-surgery")}}>
             <Text style={styles.buttonText}>DAY OF</Text>
           </TouchableOpacity>
 
