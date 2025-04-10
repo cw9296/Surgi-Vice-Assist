@@ -12,7 +12,7 @@ export default function FlowchartScreen({ navigation }) {
       <Text style={styles.text}>{questionData[current_question].question_text}</Text>
         {questionData[current_question].responses.map((response) => ( // create list of buttons based on responses to the question
           <TouchableOpacity style={styles.button} key={response.text} onPress={() => {
-                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate(response.next_question)}
+                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate('EducationalMaterials', { procedure: response.next }) }
                         }}>
             <Text style={styles.buttonText}>{response.text}</Text>
           </TouchableOpacity>

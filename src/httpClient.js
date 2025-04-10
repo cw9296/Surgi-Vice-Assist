@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View, Button, Alert, TextInput} from 'react-na
 import * as procedureMappings from './procedure_mappings.json';
 //create account function 
 
-const ip_addr = '10.47.251.248'
+const ip_addr = '192.168.1.249'
 export const createAccount = async (Name, username, email, password) => {
     try{
         const response = await fetch('http://'+ip_addr+':4000/users/createAccount', {

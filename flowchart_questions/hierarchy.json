@@ -27,12 +27,12 @@
         [
             {
                 "text": "Yes",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "No",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
@@ -60,17 +60,17 @@
         [
             {
                 "text": "device 1",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "device 2",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "device 3",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
@@ -160,12 +160,12 @@
         "responses":[
             {
                 "text": "Sure!",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "No thanks.",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
@@ -176,12 +176,12 @@
         "responses":[
             {
                 "text": "Sure!",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "No thanks.",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
@@ -192,12 +192,12 @@
         "responses":[
             {
                 "text": "Wait",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "Speak now",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
@@ -208,12 +208,12 @@
         "responses":[
             {
                 "text": "Sure!",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             },
             {
                 "text": "No thanks.",
-                "next_question": "LandingPage",
+                "next_question": "Gravity Drain",
                 "is_endpoint": true
             }
         ]
