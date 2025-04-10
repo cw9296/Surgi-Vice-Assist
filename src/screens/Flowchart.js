@@ -1,6 +1,7 @@
 import {React, useState} from 'react';
 import { Image, StyleSheet, View, Button, Text, TouchableOpacity} from 'react-native';
 import * as questionData from '../../flowchart_questions/hierarchy.json';
+import * as procedureData from '../procedure_mappings.json'
 
 export default function FlowchartScreen({ navigation }) {
   // using a state variable as this seems to be the most simple way to make the page refresh upon selection of a new question.
@@ -12,7 +13,7 @@ export default function FlowchartScreen({ navigation }) {
       <Text style={styles.text}>{questionData[current_question].question_text}</Text>
         {questionData[current_question].responses.map((response) => ( // create list of buttons based on responses to the question
           <TouchableOpacity style={styles.button} key={response.text} onPress={() => {
-                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate('EducationalMaterials', { procedure: response.next }) }
+                          if(!response.is_endpoint) {setQuestion(response.next_question)} else { navigation.navigate('EducationalMaterials', { procedure: response.next_question })}
                         }}>
             <Text style={styles.buttonText}>{response.text}</Text>
           </TouchableOpacity>
